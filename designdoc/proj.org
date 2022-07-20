@@ -1,0 +1,46 @@
+* Basic Game Loop
+** Enter Dungeon Level
+** Explore, reavealing map
+** Encounter enemies
+** Find power-ups
+** Locate the exit to the level, go to first step
+* Minimum Viable Product
+** TODO Create a basic dungeon map
+*** Drawing the Map
+Here, we'll be using modules rather than just main.rs, in order to make things work better. Rust programs are divided into crates and modules, crates are large groups of codes, while modules are the sections of code within a crate. Crates and modules act as namespaces - bracket-lib::prelude refers to the bracket-lib crate's prelude module. 
+
+Here's the structure, for example:
+- Cargo.toml
+  - Program Definition
+    - Crate: Game
+      - Main Module (main.rs)
+	fn main()
+      - crate::map Module (map.rs)
+	pub fn draw_map()
+      - crate::player Module (player.rs)
+	pub fn update()
+	pub fn render()
+  - Dependencies
+    - Bbracket_lib::*
+      - crate:bracket-terminal only accessible if re-exported -> more crates
+      - crate: bracket-random only accessible if re-exported -> more crates
+
+const NUM_TILES -> the number of tiles in our map. The tiles represent portions of the map, and each is reused.
+
+Tiles are limited to a pre-defined set of tile types, which would be good to make them an enum. We have our enum:
+TileType: Wall, Foor
+** TODO Place the player, let them walk around
+** TODO Spawn monsters, Draw them, let the player kill them by walking into them
+** TODO Add health and a combat system that uses it 
+** TODO Add healing potions
+** TODO Display "game over" when the player dies
+** TODO Add an "Amulet of Yala" to the level, let the player win when they reach it.
+* Stretch Goals
+** TODO Add FOV
+** TODO Add more interesting dungeon Designs
+** TODO Add some dungeon themes
+** TODO Add multiple layers to the dungeon, with the amulet on the last one.
+** TODO Add varied weapons to the game.
+** TODO Move to a data-driven design for spawning the enemies.
+** TODO Consider some visual effects to make combat more visceral
+** TODO Consider keeping score
