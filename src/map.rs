@@ -6,6 +6,7 @@ const NUM_TILES: usize = (SCREEN_HEIGHT * SCREEN_WIDTH) as usize; //number of ti
 pub enum TileType {
     Wall,
     Floor,
+    Exit
 }
 
 // struct describing our map, which contains a vector of TileType, which is enum defined earlier.
@@ -95,7 +96,10 @@ impl Map {
 
     // check if player can enter a tile
     pub fn can_enter_tile(&self, point: Point) -> bool {
-        self.in_bounds(point) && self.tiles[map_idx(point.x, point.y)] == TileType::Floor // floor only lol
+        self.in_bounds(point) && (
+	    self.tiles[map_idx(point.x, point.y)] == TileType::Floor ||
+		self.tiles[map_idx(point.x, point.y)] == TileType::Exit
+		)
     }
 
     //try an index
